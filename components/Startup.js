@@ -18,9 +18,9 @@ const DirectoryService = Components
 		.classes['@mozilla.org/file/directory_service;1']
 		.getService(Components.interfaces.nsIProperties);
  
-function XMigemoStartupService() { 
+function GlobalChromeCSSStartupService() { 
 }
-XMigemoStartupService.prototype = {
+GlobalChromeCSSStartupService.prototype = {
 	 
 	observe : function(aSubject, aTopic, aData) 
 	{
@@ -106,7 +106,7 @@ var gModule = {
 		},
 		createInstance : function(aOuter, aIID)
 		{
-			return new XMigemoStartupService();
+			return new GlobalChromeCSSStartupService();
 		}
 	},
 
