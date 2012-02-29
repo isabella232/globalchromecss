@@ -1,6 +1,6 @@
 const kCID  = Components.ID('{3ae77670-28cc-11dd-bd0b-0800200c9a66}'); 
 const kID   = '@clear-code.com/globalchromecss/startup;1';
-const kNAME = "globalChrome.css Startup Service";
+const kNAME = 'GlobalChromeCSSStartupService';
 
 const ObserverService = Components
 		.classes['@mozilla.org/observer-service;1']
@@ -21,12 +21,16 @@ const DirectoryService = Components
 function GlobalChromeCSSStartupService() { 
 }
 GlobalChromeCSSStartupService.prototype = {
+	classID          : kCID,
+	contractID       : kID,
+	classDescription : kNAME,
 	 
 	observe : function(aSubject, aTopic, aData) 
 	{
 		switch (aTopic)
 		{
 			case 'app-startup':
+			case 'profile-after-change':
 				ObserverService.addObserver(this, 'final-ui-startup', false);
 				return;
 
@@ -59,7 +63,6 @@ GlobalChromeCSSStartupService.prototype = {
 		}
 	},
 	
-
   
 	QueryInterface : function(aIID) 
 	{
@@ -116,7 +119,13 @@ var gModule = {
 	}
 };
 
-function NSGetModule(aCompMgr, aFileSpec) {
-	return gModule;
+try {
+	Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
+	var NSGetFactory = XPCOMUtils.generateNSGetFactory([GlobalChromeCSSStartupService]);
+}
+catch(e) {
+	var NSGetModule = function(aCompMgr, aFileSpec) {
+			return gModule;
+		};
 }
  

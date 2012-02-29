@@ -1,0 +1,4 @@
+component	{3ae77670-28cc-11dd-bd0b-0800200c9a66}	components/Startup.js
+contract	@clear-code.com/globalchromecss/startup;1	{3ae77670-28cc-11dd-bd0b-0800200c9a66}
+category	profile-after-change	GlobalChromeCSSStartupService	@clear-code.com/globalchromecss/startup;1
+
