@@ -48,14 +48,33 @@ GlobalChromeCSSStartupService.prototype = {
  
 	registerGlobalStyleSheets : function() 
 	{
-		var chrome = DirectoryService.get('AChrom', Components.interfaces.nsIFile);
-		var files = chrome.directoryEntries;
+		var applicationChrome = DirectoryService.get('AChrom', Components.interfaces.nsIFile);
+		this.registerGlobalStyleSheetsIn(applicationChrome);
+
+		var globalChrome = DirectoryService.get('GreD', Components.interfaces.nsIFile);
+		globalChrome = globalChrome.clone();
+		globalChrome.append('chrome');
+		this.registerGlobalStyleSheetsIn(globalChrome);
+	},
+	registerGlobalStyleSheetsIn : function(aChromeDirectory) 
+	{
+		if (!aChromeDirectory.exists()) {
+			Components.utils.reportError(new Error('globalChrome.css: "' + aChromeDirectory.path + '" does not exist.'));
+			return;
+		}
+		if (!aChromeDirectory.isDirectory()) {
+			Components.utils.reportError(new Error('globalChrome.css: "' + aChromeDirectory.path + '" is not a directory.'));
+			return;
+		}
+
+		var files = aChromeDirectory.directoryEntries;
 		var file;
 		var sheet;
 		while (files.hasMoreElements())
 		{
 			file = files.getNext().QueryInterface(Components.interfaces.nsIFile);
-			if (!file.isFile() || !/\.css$/i.test(file.leafName)) continue;
+			if (!file.isFile() || !/\.css$/i.test(file.leafName))
+				continue;
 			var sheet = IOService.newFileURI(file);
 			if (!SSS.sheetRegistered(sheet, SSS.USER_SHEET)) {
 				SSS.loadAndRegisterSheet(sheet, SSS.USER_SHEET);
