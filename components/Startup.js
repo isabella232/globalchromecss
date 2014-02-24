@@ -1,3 +1,6 @@
+/* This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 const kCID  = Components.ID('{3ae77670-28cc-11dd-bd0b-0800200c9a66}'); 
 const kID   = '@clear-code.com/globalchromecss/startup;1';
 const kNAME = 'GlobalChromeCSSStartupService';
