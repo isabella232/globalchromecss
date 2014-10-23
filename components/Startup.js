@@ -79,17 +79,21 @@ GlobalChromeCSSStartupService.prototype = {
 		var files = aChromeDirectory.directoryEntries;
 		var file;
 		var sheet;
+		var count = 0;
 		while (files.hasMoreElements())
 		{
 			file = files.getNext().QueryInterface(Components.interfaces.nsIFile);
 			if (!file.isFile() || !/\.css$/i.test(file.leafName))
 				continue;
-			var sheet = IOService.newFileURI(file);
+			let sheet = IOService.newFileURI(file);
 			if (!SSS.sheetRegistered(sheet, SSS.USER_SHEET)) {
 				log('[globalchromecss] register stylesheet: ' + file.path);
 				SSS.loadAndRegisterSheet(sheet, SSS.USER_SHEET);
+				count++;
 			}
 		}
+		if (count == 0)
+		  log('[globalchromecss] there is no stylesheet to be registered');
 	},
 	
   
