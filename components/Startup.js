@@ -22,8 +22,9 @@ const DirectoryService = Components
 		.getService(Components.interfaces.nsIProperties);
 
 function log(aMessage) {
-  Cc['@mozilla.org/consoleservice;1']
-    .getService(Ci.nsIConsoleService)
+  Components
+	.classes['@mozilla.org/consoleservice;1']
+    .getService(Components.interfaces.nsIConsoleService)
     .logStringMessage(aMessage);
 }
  
