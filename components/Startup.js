@@ -20,6 +20,12 @@ const IOService = Components
 const DirectoryService = Components
 		.classes['@mozilla.org/file/directory_service;1']
 		.getService(Components.interfaces.nsIProperties);
+
+function log(aMessage) {
+  Cc['@mozilla.org/consoleservice;1']
+    .getService(Ci.nsIConsoleService)
+    .logStringMessage(aMessage);
+}
  
 function GlobalChromeCSSStartupService() { 
 }
@@ -62,11 +68,11 @@ GlobalChromeCSSStartupService.prototype = {
 	registerGlobalStyleSheetsIn : function(aChromeDirectory) 
 	{
 		if (!aChromeDirectory.exists()) {
-			Components.utils.reportError(new Error('globalChrome.css: "' + aChromeDirectory.path + '" does not exist.'));
+			Components.utils.reportError(new Error('[globalchromecss] "' + aChromeDirectory.path + '" does not exist.'));
 			return;
 		}
 		if (!aChromeDirectory.isDirectory()) {
-			Components.utils.reportError(new Error('globalChrome.css: "' + aChromeDirectory.path + '" is not a directory.'));
+			Components.utils.reportError(new Error('[globalchromecss] "' + aChromeDirectory.path + '" is not a directory.'));
 			return;
 		}
 
@@ -80,6 +86,7 @@ GlobalChromeCSSStartupService.prototype = {
 				continue;
 			var sheet = IOService.newFileURI(file);
 			if (!SSS.sheetRegistered(sheet, SSS.USER_SHEET)) {
+				log('[globalchromecss] register stylesheet: ' + file.path);
 				SSS.loadAndRegisterSheet(sheet, SSS.USER_SHEET);
 			}
 		}
