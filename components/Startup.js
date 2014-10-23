@@ -94,7 +94,7 @@ GlobalChromeCSSStartupService.prototype = {
 			}
 		}
 		if (count == 0)
-		  log('[globalchromecss] there is no stylesheet to be registered');
+		  log('[globalchromecss] there is no stylesheet to be registered in ' + aChromeDirectory.path);
 	},
 	
   
