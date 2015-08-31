@@ -21,7 +21,11 @@ const DirectoryService = Components
 		.classes['@mozilla.org/file/directory_service;1']
 		.getService(Components.interfaces.nsIProperties);
 
+Components.utils.import('resource://gre/modules/Services.jsm');
+
 function log(aMessage) {
+  if (!Services.prefs.getBoolPref('extensions.globalchromecss@clear-code.com.debug'))
+    return;
   Components
 	.classes['@mozilla.org/consoleservice;1']
     .getService(Components.interfaces.nsIConsoleService)
