@@ -9,7 +9,8 @@
                    em:description="Provides global user stylesheet."
                    em:creator="ClearCode Inc."
                    em:homepageURL="http://www.clear-code.com/"
-                   em:multiprocessCompatible="true">
+                   em:multiprocessCompatible="true"
+                   em:type="2">
 
 
     <!--em:updateURL></em:updateURL-->
