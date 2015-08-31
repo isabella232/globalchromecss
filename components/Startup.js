@@ -73,11 +73,11 @@ GlobalChromeCSSStartupService.prototype = {
 	registerGlobalStyleSheetsIn : function(aChromeDirectory) 
 	{
 		if (!aChromeDirectory.exists()) {
-			Components.utils.reportError(new Error('[globalchromecss] "' + aChromeDirectory.path + '" does not exist.'));
+			log('[globalchromecss] "' + aChromeDirectory.path + '" does not exist.');
 			return;
 		}
 		if (!aChromeDirectory.isDirectory()) {
-			Components.utils.reportError(new Error('[globalchromecss] "' + aChromeDirectory.path + '" is not a directory.'));
+			log('[globalchromecss] "' + aChromeDirectory.path + '" is not a directory.');
 			return;
 		}
 
