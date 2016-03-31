@@ -1,5 +1,7 @@
 # globalChrome.css
 
+Download Link: https://addons.mozilla.org/firefox/addon/globalchromecss/
+
 ## What's this?
 
 This provides ability to apply custom CSS file for all users globally.
