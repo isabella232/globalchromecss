@@ -1,5 +1,7 @@
 # globalChrome.css
 
+ダウンロードリンク：https://addons.mozilla.org/firefox/addon/globalchromecss/
+
 ## これは何？
 
 すべてのユーザに対してグローバルに適用するためのユーザースタイルシートを利用できるようにします。
