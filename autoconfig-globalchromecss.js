@@ -3,7 +3,7 @@
   let { Services } = Cu.import('resource://gre/modules/Services.jsm', {});
   const SSS = Cc['@mozilla.org/content/style-sheet-service;1'].getService(Ci.nsIStyleSheetService);
   let log = (aMessage) => {
-    if (Services.prefs.getBoolPref('extensions.globalchromecss@clear-code.com.debug'))
+    if (getPref('extensions.globalchromecss@clear-code.com.debug'))
       Services.console.logStringMessage(aMessage);
   }
   Services.obs.addObserver({
