@@ -33,9 +33,12 @@
         if (!file.isFile() || !/\.css$/i.test(file.leafName))
           continue;
         let sheet = Services.io.newFileURI(file);
-        if (!SSS.sheetRegistered(sheet, SSS.USER_SHEET)) {
+        let type = /\.agent\.css$/i.test(file.leafName) ? SSS.AGENT_SHEET :
+                   /\.author\.css$/i.test(file.leafName) ? SSS.AUTHOR_SHEET :
+                   SSS.USER_SHEET;
+        if (!SSS.sheetRegistered(sheet, type)) {
           log(`[globalchromecss] register stylesheet: ${file.path}`);
-          SSS.loadAndRegisterSheet(sheet, SSS.USER_SHEET);
+          SSS.loadAndRegisterSheet(sheet, type);
           count++;
         }
       }
